@@ -13,7 +13,7 @@ This short guide begins by creating a new project with [rebar3](http://www.rebar
 
 The command `rebar3` should be available and return output similar to below:
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ rebar3
 Rebar3 is a tool for working with Erlang projects.
 
@@ -28,7 +28,7 @@ Usage: rebar [-h] [-v] [<task>]
 
 First, create a new project called `myapp`; change directory (`cd`) to the new directory `myapp` afterwards.
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ rebar3 new release myapp
 ===> Writing myapp/apps/myapp/src/myapp_app.erl
 ===> Writing myapp/apps/myapp/src/myapp_sup.erl
@@ -60,7 +60,7 @@ tree
 
 Next, open `apps/myapp/src/myapp_app.erl` and add a short debug statement to the `start` function. It should look like the function below.
 
-{% highlight erlang lineanchors %}
+{% highlight erlang linenos %}
 start(_StartType, _StartArgs) ->
     io:format("myapp is starting up~n"),
     'myapp_sup':start_link().
@@ -68,7 +68,7 @@ start(_StartType, _StartArgs) ->
 
 Finally, start the application with `rebar3 shell` and confirm the above line is displayed.
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ rebar3 shell
 ===> Verifying dependencies...
 ===> Compiling myapp
@@ -91,7 +91,7 @@ The program starts and prints out the debug line; success!
 
 Now to package it for distribution. To do this, run the `tar` command with `rebar3 as prod tar`.
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ rebar3 as prod tar
 ===> Verifying dependencies...
 ===> Compiling myapp
@@ -122,7 +122,7 @@ Here is what is happening:
 
 On the local development machine, extract the archive and run the release with `bin/myapp-0.1.0 foreground`.
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ mkdir -p ~/unzip
 $ tar xf _build/prod/rel/myapp/myapp-0.1.0.tar.gz -C ~/unzip
 $ cd ~/unzip
@@ -142,7 +142,7 @@ Success! (`CTRL+C` to exit)
 
 Copy the archive to a remote system of a different operating system. The rest of this post assumes the remote system is [FreeBSD 10.x](https://www.freebsd.org).
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ scp _build/prod/rel/myapp/myapp-0.1.0.tar.gz remotesystem
 myapp-0.1.0.tar.gz                                                                          23% 1424KB 303.8KB/s   00:15 ETA
 $ ssh remotesystem
@@ -176,7 +176,7 @@ The follow steps cover the second option - downloading and extracting a binary d
 
 Binary packages for FreeSBD 10.x (amd64) [are available here](http://pkg.freebsd.org/freebsd:10:x86:64/latest/All/). As of  August 23, 2015, the version available is `erlang-18.0.3,3.txz` [(download)](http://pkg.freebsd.org/freebsd:10:x86:64/latest/All/erlang-18.0.3,3.txz). If this is out of date, visit the link above and search for `erlang-`.
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ wget http://pkg.freebsd.org/freebsd:10:x86:64/latest/All/erlang-18.0.3,3.txz
 $ mkdir -p ~/unzip/erlang/freebsd
 $ tar xf erlang-18.0.3,3.txz -C ~/unzip/erlang/freebsd
@@ -186,7 +186,7 @@ $ rm -rf ~/unzip/erlang/freebsd/usr/local/
 
 Update `rebar.config` to use this alternative erlang and erts distribution.
 
-{% highlight erlang lineanchors %}
+{% highlight erlang linenos %}
 {erl_opts, [debug_info]}.
 {deps, []}.
 
@@ -216,7 +216,7 @@ Before the final build, there is one more change to make.
 
 By default, `config/vm.args` will try to use a [long name](http://erlang.org/doc/reference_manual/distributed.html). A long name must follow the format `node@host` and be resolvable, otherwise the application will not start. A short name, however, is just `node`. Use a short name by changing `-name myapp` to `-sname myapp`.
 
-{% highlight erlang lineanchors %}
+{% highlight erlang linenos %}
 -sname myapp
 
 -setcookie myapp_cookie
@@ -229,7 +229,7 @@ By default, `config/vm.args` will try to use a [long name](http://erlang.org/doc
 
 Create the final artifact by executing the `tar` command again.
 
-{% highlight text lineanchors  %}
+{% highlight text linenos  %}
 rebar3 as prod do clean, tar
 ===> Cleaning out myapp...
 ===> Verifying dependencies...
@@ -262,7 +262,7 @@ rebar3 as prod do clean, tar
 
 `scp` the newest archive to the remote system and run it!
 
-{% highlight text lineanchors %}
+{% highlight text linenos %}
 $ bin/myapp foreground
 Exec: myapp/erts-7.0.3/bin/erlexec -noshell -noinput +Bd -boot myapp/releases/0.1.0/start -mode embedded -config myapp/releases/0.1.0/sys.config -boot_var ERTS_LIB_DIR myapp/erts-7.0.3/../lib -args_file myapp/releases/0.1.0/vm.args -- foreground
 Root: myapp
