@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Cross Compiling an Erlang Application for FreeBSD
+title:      Cross Compiling an Erlang Application
 date:       2015-08-22
 summary:    A short guide to cross compiling an Erlang application with rebar3.
 categories: erlang freebsd rebar
