@@ -7,17 +7,11 @@ baseurl:     ""
 url:         "https://thecdcd.github.io"
 
 # Google analytics
-google_analytics:
-
-# Optional features
-animated:           false
-show_related_posts: false
-show_post_footers:  false
-show_social_icons:  false
+# google_analytics: SOMEIDHERE
 
 # Disqus post comments
 # (leave blank to disable Disqus)
-disqus_shortname:
+# disqus: disqus-id
 
 # Social icons
 github_username: "thecdcd"
@@ -45,8 +39,13 @@ share_reddit: true
 share_stumbleupon: true
 share_hackernews: true
 
+# GitHub
+github_repo: thecdcd/thecdcd.github.io
+
 # Syntax highlighting
-highlighter: pygments
+#highlighter: pygments
+
+excerpt_separator: "<!-- more -->"
 
 # Build settings
 markdown:     kramdown

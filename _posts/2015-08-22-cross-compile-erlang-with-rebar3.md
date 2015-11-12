@@ -7,10 +7,11 @@ categories: erlang freebsd rebar
 ---
 I am developing an [Erlang](http://erlang.org) application on my laptop for a production system that runs [FreeBSD 10.x](http://www.freebsd.org). By default, the compiled releases are for OSX/darwin and do not run on the production target. This post details how to cross compile an Erlang project for FreeBSD, however, it should be applicable to any operating system.
 
+<!-- more -->
+
 This short guide begins by creating a new project with [rebar3](http://www.rebar3.org/) and ends with it running on both a development machine and a [FreeBSD](http://www.freebsd.org) server. This picks up after the [Getting Started guide](http://www.rebar3.org/v3.0/docs) for the `rebar3` tool and covers project creation, build configuration, and distribution packaging.
 
 ## Getting Started
-
 The command `rebar3` should be available and return output similar to below:
 
 {% highlight text linenos %}

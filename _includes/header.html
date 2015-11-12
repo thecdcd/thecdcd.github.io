@@ -1,14 +1,23 @@
-<header class="site-header px2 px-responsive">
-  <div class="mt2 wrap">
-    <div class="measure">
-      <a href="{{ site.url }}" class="site-title">{{ site.title }}</a>
-      <nav class="site-nav">
-        {% include navigation.html %}
-      </nav>
-      <div class="clearfix"></div>
-      {% if site.show_social_icons %}
-        {% include social_links.html %}
-      {% endif %}
-    </div>
+<header id="main-header">
+  <div id="site-title">
+    <a href="/">{{ site.title }}</a>
+  </div>
+  <div class="links">
+  {% assign current = page.title %}
+  <a href="/" class="page-link{% if current == null %} active{% endif %}">Blog</a>
+  {% for page in site.pages %}
+    {% if page.title and page.permalink != "/404.html" %}
+      <a class="page-link{% if current == page.title %} active{% endif %}"
+        href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+    {% endif %}
+  {% endfor %}
+  <a href="/feed.xml" target="_blank" class="page-link">RSS</a>
+  {% if site.github_repo %}
+  <a href="http://github.com/{{ site.github_repo }}"
+    target="_blank"
+    class="page-link github-link">
+    <img src="/images/github-repo.png" alt="Github Repository">
+    Source</a>
+  {% endif %}
   </div>
 </header>

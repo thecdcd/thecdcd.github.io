@@ -9,6 +9,8 @@ I want to run a [Mesos](https://mesos.apache.org/) cluster. I want to test [Asga
 
 This is a guide to install the [Xen hypervisor](http://www.xenproject.org/) on a fresh install of [Ubuntu Server 15.10](http://www.ubuntu.com/server). The end result is a working Xen installation with a running Ubuntu Server 15.04 guest  (aka Virtual Machine (VM)).
 
+<!-- more -->
+
 # Host Installation Notes
 **Use Logical Volume Management (LVM) when configuring the disk and leave plenty of space free.**
 
