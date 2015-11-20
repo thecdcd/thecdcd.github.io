@@ -85,6 +85,8 @@ requests==2.8.1
 # Build It
 Use the `build` command to build the new image. The tag argument (`-t`) allows naming the resulting image -- without it the image can only be identified through a hash.
 
+Run "`docker build -t twitch-channels-app .`" -- the "`.`" references the local directory with `twitchcounts.py`.
+
 {% highlight text linenos %}
 $ sudo docker build -t twitch-channels-app .
 Sending build context to Docker daemon 70.14 kB
@@ -113,6 +115,8 @@ Successfully built 517db7e0fb8a
 
 The `images` command will show docker images on the local system. `twitch-count-app` should be part of the listing.
 
+Run `docker images` to view docker images on the current machine.
+
 {% highlight text linenos %}
 twitch-count$ sudo docker images
 REPOSITORY            TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -121,6 +125,8 @@ twitch-count-app      latest              517db7e0fb8a        31 seconds ago    
 
 # Run It
 Use the `run` command to run the new image and get the streamer count.
+
+Run "`docker run --rm --name my-running-app twitch-count-app`" to run the docker container.
 
 {% highlight text linenos %}
 $ sudo docker run --rm --name my-running-app twitch-count-app
@@ -145,6 +151,8 @@ Since the first option was demonstrated above, this tackles saving and loading d
 docker provides the `save` command, which outputs a docker image as a `tar` file. By default, it writes to `STDOUT`, but this can be changed with the output (`-o`) argument.
 
 **NOTE:** The command below uses `sudo`, so the resulting `tar` file will be owned by `root`. Be sure to `chown` the file correctly for your setup.
+
+Run "`docker save -o twitch-count-app.tar twitch-count-app`" to save the `twitch-count-app` image to a tar file.
 
 {% highlight text linenos %}
 $ sudo docker save -o twitch-count-app.tar twitch-count-app
